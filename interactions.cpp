@@ -24,6 +24,10 @@ void call()
 			getline(cin, request);
 			countPieces(request);
 		}
+		else if (request == "passnplay")
+		{
+			passnplay();
+		}
 		else
 		{
 			cout<<"Command '" <<request <<"' does not exist or is currently unavailable."<<endl;
