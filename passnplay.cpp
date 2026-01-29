@@ -84,14 +84,16 @@ void passnplay()
             else if(WhitedrawCounter>15)
             {
                 cout << "Black do you want to accept draw(accept/nope):" << endl;
-                cin >> move;
+                getline(cin,move);
+                    cin.ignore();
                 if (move == "accept")
                 {
                     cout << "Game drawn by agreement" << endl;
+                    return;
                 }
                 else
                 {
-                    cout << "Offer rejected,try again after 15 moves";
+                    cout << "Offer rejected,try again after 15 moves"<<endl;
                     BlackdrawCounter = 0;
                     goto start;
                 }
@@ -112,14 +114,16 @@ void passnplay()
             else if(WhitedrawCounter>15)
             {
                 cout << "White do you want to accept draw(accept/nope):" << endl;
-                cin >> move;
+                getline(cin, move);
+                cin.ignore();
                 if (move == "accept")
                 {
                     cout << "Game drawn by agreement" << endl;
+                    return;
                 }
                 else
                 {
-                    cout << "Offer rejected,try again after 15 moves";
+                    cout << "Offer rejected,try again after 15 moves"<<endl;
                     WhitedrawCounter = 0;
                     goto start;
                 }
@@ -129,6 +133,11 @@ void passnplay()
                 cout << "Draw counter is less than 15!" << endl;
                 goto start;
              }
+        }
+        else if (move == "fen")
+        {
+            writeFEN(board);
+            goto start;
         }
         
         stringstream ss(move);
@@ -222,9 +231,7 @@ void passnplay()
         case 'h':
             CurrentColomn = 7;
             break;
-        default:
-            cout << "Invalid MOve"<<endl;
-            break;
+        
         }
           
         switch (targetSqr[0])
@@ -252,9 +259,6 @@ void passnplay()
             break;
         case 'h':
             targetColomn = 7;
-            break;
-        default:
-            cout << "Invalid MOve"<<endl;
             break;
         }
        

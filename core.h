@@ -10,3 +10,6 @@ void call();
 void showboard(string);
 void countPieces(string);
 void passnplay();
+char* to_1d(char[][8], char[]);
+string generateFEN(char arr[][8]);
+void writeFEN(char arr[][8]);
