@@ -24,6 +24,10 @@ void passnplay()
 +---------------+)";
 	cout<<endl << "Press Enter to start....";
     getchar();
+    bool q_blackCastle = true;
+    bool k_blackCastle = true;
+    bool Q_whiteCastle = true;
+    bool K_whiteCastle = true;
     int moveColor = true;
     int moveCounter = 1;
     int BlackdrawCounter = 1;
@@ -136,7 +140,7 @@ void passnplay()
         }
         else if (move == "fen")
         {
-            writeFEN(board);
+            writeFEN(board,K_whiteCastle,Q_whiteCastle,k_blackCastle,q_blackCastle,moveColor,moveCounter);
             goto start;
         }
         
@@ -275,8 +279,34 @@ void passnplay()
             else
             {
                 board[targetRow][targetColomn] = board[currentRow][CurrentColomn];
-                board[currentRow][CurrentColomn] = '.';
                 moveColor = false;
+                if (board[currentRow][CurrentColomn] == 'k')
+                {
+                    k_blackCastle = false;
+                    q_blackCastle = false;
+                }
+                if (currentRow == 0 && CurrentColomn == 0)
+                {
+                    q_blackCastle = false;
+                }
+                if (currentRow == 7 && CurrentColomn == 7)
+                {
+                    K_whiteCastle = false;
+                }
+                if (currentRow == 7 && CurrentColomn == 0)
+                {
+                    Q_whiteCastle = false;
+                }
+                if (currentRow == 0 && CurrentColomn == 7)
+                {
+                    k_blackCastle = false;
+                }
+                if (board[currentRow][CurrentColomn] == 'K')
+                {
+                    K_whiteCastle = false;
+                    Q_whiteCastle = false;
+                }
+                board[currentRow][CurrentColomn] = '.';
             }
         }
         else if (board[currentRow][CurrentColomn] > 'a' && board[currentRow][CurrentColomn] < 'z' && moveColor == false)
@@ -288,11 +318,37 @@ void passnplay()
             else
             {
                 board[targetRow][targetColomn] = board[currentRow][CurrentColomn];
-                board[currentRow][CurrentColomn] = '.';
                 BlackdrawCounter++;
                 WhitedrawCounter++;
                 moveCounter++;
                 moveColor = true; 
+                if (board[currentRow][CurrentColomn] == 'k')
+                {
+                    k_blackCastle = false;
+                    q_blackCastle = false;
+                }
+                if (currentRow == 0 && CurrentColomn == 0)
+                {
+                    q_blackCastle = false;
+                }
+                if (currentRow == 7 && CurrentColomn == 7)
+                {
+                    K_whiteCastle = false;
+                }
+                if (currentRow == 7 && CurrentColomn == 0)
+                {
+                    Q_whiteCastle = false;
+                }
+                if (currentRow == 0 && CurrentColomn == 7)
+                {
+                    k_blackCastle = false;
+                }
+                if (board[currentRow][CurrentColomn] == 'K')
+                {
+                    K_whiteCastle = false;
+                    Q_whiteCastle = false;
+                }
+                board[currentRow][CurrentColomn] = '.';
             }
         }
         else
