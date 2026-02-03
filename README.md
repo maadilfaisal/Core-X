@@ -1,6 +1,6 @@
 ﻿# Core-X
 I am building this project as I like bulding complex things.Doing this solo is going to be a great adventure👌.
-<b>Current features:</b>
+<br><b>Current features:</b>
 It is easy to use like console application.
 This thing offers passnplay feature where you can play against your friend but need to be a bit focused on what you are moving
 where.
@@ -9,7 +9,7 @@ It can currently validate if the piece on target square is friendly piece and gi
 Be a bit cautious moving pieces cause it do not offer undo feature.
 If you are losing better to resign cause it has that feature.
 You can also offer draw if you want and you can only do it after 15 moves.
-<b>User Manual:</b>
+<br><b>User Manual:</b>
 1_Commands:
 (showboard) This command is the first feature I added into this future engine. By typing this command you are asked for Forsyth Edward Notation(FEN)
 that is commonly used to describe positions of many board games.You just copy and paste this notation into it and it automatically
