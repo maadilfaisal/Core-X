@@ -25,7 +25,7 @@ Simply type the current piece location like e2 mean it is 5th colomn and 2nd row
 current piece location. Always remember in chess it is always white to move first. So the first row is actually the last row on screen.
 Capital letters represent white pieces and small letters represents black pieces. If in between you want the current postition FEN then simply type <b>(fen)</b> on your turn and it will return you
 the FEN. Want to give up simply type <b>(resign)</b>.Brain is not braining of both you and your friend simply type <b>(abort)</b> to quit the game without any desicion. Feeling you are not going to win,
-simply type<b> (draw)</b> and pray if opponent must accept.But remeber you have must played over fifteen moves and if opponent declines then you are not going to offer any till next fifteen moves.
+simply type<b> (draw)</b> and pray if opponent accepts.But remeber you must have played over fifteen moves and if opponent declines, then you are not going to offer any, till next fifteen moves.
 Kinda crazy but my work my rules!!!!
 <br><b>Future plans:</b>
 Will add move validation so that no one can do whatever he/she want.Currently bishop move function is totally done just and next target is going to be a knight.<br>
