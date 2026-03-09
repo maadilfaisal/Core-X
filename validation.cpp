@@ -301,4 +301,136 @@ bool validateMove(string FEN,string move)
             }
         }
     }
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'n')
+    {
+        if (targetColomn > CurrentColomn && targetRow > currentRow)
+        {
+            if ((currentRow + 1) >= 8 || (CurrentColomn + 2) >= 8)
+            {
+                return false;
+            }
+            else if ((currentRow + 2) >= 8 || (CurrentColomn + 1) >= 8)
+            {
+                return false;
+            }
+            else if ((currentRow + 1) == targetRow && (CurrentColomn+2)==targetColomn)
+            {
+                return true;
+            } 
+            else if ((currentRow + 2 == targetRow) && (CurrentColomn + 1) == targetColomn)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+       }
+        else if (targetColomn > CurrentColomn && targetRow < currentRow)
+        {
+            if ((currentRow - 1) < 0 || (CurrentColomn + 2) >= 8)
+            {
+                return false;
+            }
+            else if ((CurrentColomn + 1) >= 8 || (currentRow - 2) < 0)
+            {
+                return false;
+            }
+
+            else if ((currentRow - 1) == targetRow && (CurrentColomn + 2) == targetColomn)
+            {
+                return true;
+            }
+            else if ((CurrentColomn + 1) == targetColomn && (currentRow - 2) == targetRow)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (targetRow < currentRow && targetColomn < CurrentColomn)
+        {
+            if ((CurrentColomn - 1)<0 || (currentRow - 2) < 0)
+            {
+                return false;
+            }
+            else if ((CurrentColomn - 2) < 0 || (currentRow - 1) < 0)
+            {
+                return false;
+            }
+            else if ((CurrentColomn - 1) == targetColomn && (currentRow - 2) == targetRow)
+            {
+                return true;
+            }
+            else if ((CurrentColomn - 2) == targetColomn && (currentRow - 1) == targetRow)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (targetColomn<CurrentColomn && targetRow>currentRow)
+        {
+            if ((currentRow + 1) >= 8 && (CurrentColomn - 2) <= 0)
+            {
+                return false;
+            }
+            if ((currentRow +2) >= 8 && (CurrentColomn -1 ) <= 0)
+            {
+                return false;
+            }
+            else if ((currentRow + 1) == targetRow && (CurrentColomn - 2) == targetColomn)
+            {
+                return true;
+            }
+            else if ((CurrentColomn - 1) == targetColomn && (currentRow + 2) == targetRow)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    else if (currentPosition2D[CurrentColomn][currentRow] == 'r')
+    {
+        if (CurrentColomn == targetColomn && currentRow < targetRow)
+        {
+            for (int i = currentRow, j = CurrentColomn;  j <= targetRow; i, j++)
+            {
+                if ( j == targetRow)
+                {
+                    validMove = true;
+                }
+            }
+            if (!validMove)
+            {
+                return false;
+            }
+            for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
+            {
+                switch (currentPosition2D[i][j])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+            }
+        }
+    }
 }
