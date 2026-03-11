@@ -158,6 +158,8 @@ bool validateMove(string FEN,string move)
     }
     
        
+    //cout << currentRow<<CurrentColomn;
+    cout << currentPosition2D[currentRow][CurrentColomn];
   
     if (currentPosition2D[currentRow][CurrentColomn] == 'b')
     {
@@ -397,13 +399,71 @@ bool validateMove(string FEN,string move)
             }
         }
     }
-    else if (currentPosition2D[CurrentColomn][currentRow] == 'r')
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'r')
     {
-        if (CurrentColomn == targetColomn && currentRow < targetRow)
+        if (currentRow < targetRow)
         {
-            for (int i = currentRow, j = CurrentColomn;  j <= targetRow; i, j++)
+            if (CurrentColomn != targetColomn)
             {
-                if ( j == targetRow)
+                return false;
+           }
+            for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
+            {
+                switch (currentPosition2D[j][i])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+            }
+        }
+        else if (targetRow < currentRow)
+        {
+            if (CurrentColomn != targetColomn)
+            {
+                return false;
+            }
+           
+            for (int i = CurrentColomn, j = currentRow - 1; j > targetRow; j--)
+            {
+            cout << "yes";
+                switch (currentPosition2D[j][i])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+            }
+        }
+        else if (currentRow == targetRow && targetColomn < CurrentColomn)
+        {
+            if (currentRow != targetRow)
+            {
+                return false;
+            }
+            for (int i = currentRow, j = CurrentColomn - 1; j >= targetColomn; j--)
+            {
+                if (j == targetColomn)
                 {
                     validMove = true;
                 }
@@ -412,7 +472,45 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-            for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
+            for (int i = currentRow, j = CurrentColomn-1; j > targetColomn; j--)
+            {
+                switch (currentPosition2D[i][j])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                //cout << CurrentColomn;
+                    return false;
+                }
+            }
+        }
+        else if (currentRow == targetRow && CurrentColomn < targetColomn)
+        {
+            if (currentRow != targetRow)
+            {
+                return false;
+            }
+            for (int i = CurrentColomn, j = currentRow; j <= targetColomn; i, j++)
+            {
+                if (j == targetColomn)
+                {
+                    validMove = true;
+                }
+            }
+            if (!validMove)
+            {
+                return false;
+            }
+            for (int i = currentRow, j = CurrentColomn + 1; j < targetColomn; j++)
             {
                 switch (currentPosition2D[i][j])
                 {
@@ -432,5 +530,6 @@ bool validateMove(string FEN,string move)
                 }
             }
         }
+
     }
 }
