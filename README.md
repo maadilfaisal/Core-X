@@ -31,16 +31,16 @@ Kinda crazy but my work my rules!!!!
 Will add move validation so that no one can do whatever he/she want.Currently all move functions are totally done just mighty king is waiting to follow my rules.<br>
 Will add current position analysis on the bases of piece placement.<br>
 It will play one day and this day is not too far, maybe intelligent play should take time.<br>
-<b>Developers Roadmap:</b>Hola developers! So I hope you have succesfully learnt what this thing is and how it is working. And now I want you to contribute and show you just do not understand coding but you
-but you also understand coding a mind playing mind game. Now there exist many functions for you ease. one function is to to_2D that converts a 1d array to a 2 dimensional array. This is useful as my small mind
-can only understand the things happening on board in 2d and it proved helpful for me. But I am giving a sacrifice on its speed. Use of two dimensional arrays will drastically deprove performance. By my 
-calculations we can reach a par 5k to 10k moves per second while word number array based engines reach a peak 40 to 50 million moves per second while bitboard operated engine reach a peek of 3 to 4 billion move per second.
-Another function to exist is to_1d that works by converting a 2d array into one dimensional array and all these array is a board. The most powerful function is the FEN generator. All the engines in the world 
+<b>Developers Roadmap:</b>Hola developers! So I hope you have succesfully learnt what this thing is and how it is working. And now I want you to contribute and show you just do not understand coding, 
+but you also understand coding a mind, playing mind game. Now there exist many functions for you ease. one function is to_2D, that converts a 1d array to a 2 dimensional array. This is useful as my small mind
+only understands the things happening on board in 2d and it proved helpful for me. But I am giving a sacrifice on its speed. Use of two dimensional arrays will drastically deprove performance. By my 
+calculations we can only reach a par 5k to 10k moves per second while world number one array based engines reach a peak 40 to 50 million moves per second while bitboard operated engine reach a peek of 3 to 4 billion move per second.
+Another function to exist is to_1d that works by converting a 2d array into one dimensional array and all these arrays represent a board. The most powerful function is the FEN generator. All the engines in the world 
 works on the bases of FEN and it is for mostly board games not only chess. By the way I liked you confidence that you can contribute and do not even know about FEN. So whatever, now the next roadmap is to make
-a function that takes the board postition in form of FEN and the square and checks wether this square is attacked or not as this function useful to know if the king is checkmated or castling is possible or not
+a function that takes the board postition in form of FEN and the square and checks wether this square is attacked or not as this function is useful to know if the king is checkmated or castling is possible or not
 after it we will build a function that will take the board and will evaluate position, It will not only evaluate on the bases of number of piece and its value but we will include modern table databases that 
-will give a piece a value on the bases of where it is place and how much squares it is controlling and will deduct scores if squares near the king are attacked, so the function I discussed earlier is useful.
-As we will be done with it we will convert all the array arithmetics to pointer arithmetics pushing our engine calcuation to +500 to +600. Now after all that we introduce and will work on building the self 
+will give a piece a value on the bases of where it is placed and how much squares it is controlling and will deduct scores if squares near the king are attacked, so the function I discussed earlier is useful in this case.
+As we will be done with it we will convert all the array arithmetics to pointer arithmetics pushing our engine calcuation to +500 to +600 nodes. Now after all that we will work on building the self 
 playing engine as we have all the necessary plates to cook. So at last this is for the braves😂.
-If you are someone waiting to play or test this out or submit this as your school project, we are with you carry on._
+If you are someone waiting to play or test this out or submit this as your school project, we are with you, carry onnnn._
 
