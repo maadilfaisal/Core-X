@@ -30,6 +30,7 @@ bool validateMove(string FEN,string move)
 		}
 	}
     currentPosition[64] = '\0';
+    string discard;
     //cout << "yes";
     //cout << currentPosition;
 	to_2d(currentPosition2D, currentPosition);
@@ -159,13 +160,794 @@ bool validateMove(string FEN,string move)
     
        
     //cout << currentRow<<CurrentColomn;
-    cout << currentPosition2D[currentRow][CurrentColomn];
-  
-    if (currentPosition2D[currentRow][CurrentColomn] == 'b')
+    //cout << currentPosition2D[currentRow][CurrentColomn];
+    if (currentPosition2D[currentRow][CurrentColomn] == 'b' || currentPosition2D[currentRow][CurrentColomn] == 'n' || currentPosition2D[currentRow][CurrentColomn] == 'k' || currentPosition2D[currentRow][CurrentColomn] == 'p' || currentPosition2D[currentRow][CurrentColomn] == 'r' || currentPosition2D[currentRow][CurrentColomn] == 'q')
+    {
+        if (currentPosition2D[targetRow][targetColomn] == 'b' || currentPosition2D[targetRow][targetColomn] == 'n' || currentPosition2D[targetRow][targetColomn] == 'k' || currentPosition2D[targetRow][targetColomn] == 'p' || currentPosition2D[targetRow][targetColomn] == 'r' || currentPosition2D[targetRow][targetColomn] == 'q')
+        {
+            return false;
+        }
+    }
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'B' || currentPosition2D[currentRow][CurrentColomn] == 'N' || currentPosition2D[currentRow][CurrentColomn] == 'K' || currentPosition2D[currentRow][CurrentColomn] == 'P' || currentPosition2D[currentRow][CurrentColomn] == 'R' || currentPosition2D[currentRow][CurrentColomn] == 'Q')
+    {
+        if (currentPosition2D[targetRow][targetColomn] == 'B' || currentPosition2D[targetRow][targetColomn] == 'N' || currentPosition2D[targetRow][targetColomn] == 'K' || currentPosition2D[targetRow][targetColomn] == 'P' || currentPosition2D[targetRow][targetColomn] == 'Q' || currentPosition2D[targetRow][targetColomn] == 'Q')
+        {
+            return false;
+        }
+    }
+    //black pieces validation part
+        if (currentPosition2D[currentRow][CurrentColomn] == 'b')
+        {
+            if (targetColomn > CurrentColomn && targetRow > currentRow)
+            {
+                for (int i = currentRow + 1, j = CurrentColomn + 1; i <= targetRow && j < targetColomn; i++, j++)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+                    case 'p':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'r':
+                    case 'R':
+                    case 'N':
+                    case 'B':
+                    case 'Q':
+                    case 'K':
+                    case 'P':
+                        return false;
+                        break;
+                    }
+                }
+                for (int i = currentRow, j = CurrentColomn; i <= targetRow && j <= targetColomn; i++, j++)
+                {
+                    if (j == targetColomn && i == targetRow)
+                    {
+                        validMove = true;
+                    }
+
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+            }
+            else if (targetRow > currentRow && targetColomn < CurrentColomn)
+            {
+                for (int i = currentRow + 1, j = CurrentColomn - 1; i <= targetRow && j >= targetColomn; i++, j--)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+
+                    case 'p':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'r':
+                    case 'R':
+                    case 'N':
+                    case 'B':
+                    case 'Q':
+                    case 'K':
+                    case 'P':
+                        // cout << currentRow << CurrentColomn;
+                        return false;
+                        break;
+
+                    }
+                }
+                for (int i = currentRow, j = CurrentColomn; i <= targetRow && j >= targetColomn; i++, j--)
+                {
+                    //cout << "yes";
+                    if (j == targetColomn && i == targetRow)
+                    {
+                        validMove = true;
+                    }
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+            }
+            else if (targetRow < currentRow && targetColomn < CurrentColomn)
+            {
+                for (int i = currentRow - 1, j = CurrentColomn - 1; i >= targetRow && j >= targetColomn; i--, j--)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+                    case 'p':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'r':
+                    case 'R':
+                    case 'N':
+                    case 'B':
+                    case 'Q':
+                    case 'K':
+                    case 'P':
+                        return false;
+                    }
+                }
+                for (int i = currentRow, j = CurrentColomn; i >= targetRow && j >= targetColomn; i--, j--)
+                {
+                    if (j == targetColomn && i == targetRow)
+                    {
+                        validMove = true;
+                    }
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+            }
+            else if (targetRow < currentRow && targetColomn > CurrentColomn)
+            {
+                for (int i = currentRow - 1, j = CurrentColomn + 1; i >= targetRow && j <= targetColomn; i--, j++)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+                    case 'p':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'r':
+                    case 'R':
+                    case 'N':
+                    case 'B':
+                    case 'Q':
+                    case 'K':
+                    case 'P':
+                        return false;
+                    }
+                }
+                for (int i = currentRow, j = CurrentColomn; i >= targetRow && j <= targetColomn; i--, j++)
+                {
+                    if (i == targetRow && j == targetColomn)
+                    {
+                        validMove = true;
+                    }
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+            }
+        }
+        else if (currentPosition2D[currentRow][CurrentColomn] == 'n')
+        {
+            if (targetColomn > CurrentColomn && targetRow > currentRow)
+            {
+                if ((currentRow + 1) >= 8 || (CurrentColomn + 2) >= 8)
+                {
+                    return false;
+                }
+                else if ((currentRow + 2) >= 8 || (CurrentColomn + 1) >= 8)
+                {
+                    return false;
+                }
+                else if ((currentRow + 1) == targetRow && (CurrentColomn + 2) == targetColomn)
+                {
+                    return true;
+                }
+                else if ((currentRow + 2 == targetRow) && (CurrentColomn + 1) == targetColomn)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (targetColomn > CurrentColomn && targetRow < currentRow)
+            {
+                if ((currentRow - 1) < 0 || (CurrentColomn + 2) >= 8)
+                {
+                    return false;
+                }
+                else if ((CurrentColomn + 1) >= 8 || (currentRow - 2) < 0)
+                {
+                    return false;
+                }
+
+                else if ((currentRow - 1) == targetRow && (CurrentColomn + 2) == targetColomn)
+                {
+                    return true;
+                }
+                else if ((CurrentColomn + 1) == targetColomn && (currentRow - 2) == targetRow)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (targetRow < currentRow && targetColomn < CurrentColomn)
+            {
+                if ((CurrentColomn - 1) < 0 || (currentRow - 2) < 0)
+                {
+                    return false;
+                }
+                else if ((CurrentColomn - 2) < 0 || (currentRow - 1) < 0)
+                {
+                    return false;
+                }
+                else if ((CurrentColomn - 1) == targetColomn && (currentRow - 2) == targetRow)
+                {
+                    return true;
+                }
+                else if ((CurrentColomn - 2) == targetColomn && (currentRow - 1) == targetRow)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (targetColomn<CurrentColomn && targetRow>currentRow)
+            {
+                if ((currentRow + 1) >= 8 && (CurrentColomn - 2) <= 0)
+                {
+                    return false;
+                }
+                if ((currentRow + 2) >= 8 && (CurrentColomn - 1) <= 0)
+                {
+                    return false;
+                }
+                else if ((currentRow + 1) == targetRow && (CurrentColomn - 2) == targetColomn)
+                {
+                    return true;
+                }
+                else if ((CurrentColomn - 1) == targetColomn && (currentRow + 2) == targetRow)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        else if (currentPosition2D[currentRow][CurrentColomn] == 'r')
+        {
+            if (currentRow < targetRow)
+            {
+                if (CurrentColomn != targetColomn)
+                {
+                    return false;
+                }
+                for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
+                {
+                    switch (currentPosition2D[j][i])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        return false;
+                    }
+                }
+            }
+            else if (targetRow < currentRow)
+            {
+                if (CurrentColomn != targetColomn)
+                {
+                    return false;
+                }
+
+                for (int i = CurrentColomn, j = currentRow - 1; j > targetRow; j--)
+                {
+                    cout << "yes";
+                    switch (currentPosition2D[j][i])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        return false;
+                    }
+                }
+            }
+            else if (currentRow == targetRow && targetColomn < CurrentColomn)
+            {
+                if (currentRow != targetRow)
+                {
+                    return false;
+                }
+                for (int i = currentRow, j = CurrentColomn - 1; j >= targetColomn; j--)
+                {
+                    if (j == targetColomn)
+                    {
+                        validMove = true;
+                    }
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+                for (int i = currentRow, j = CurrentColomn - 1; j > targetColomn; j--)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        //cout << CurrentColomn;
+                        return false;
+                    }
+                }
+            }
+            else if (currentRow == targetRow && CurrentColomn < targetColomn)
+            {
+                if (currentRow != targetRow)
+                {
+                    return false;
+                }
+                for (int i = CurrentColomn, j = currentRow; j <= targetColomn; i, j++)
+                {
+                    if (j == targetColomn)
+                    {
+                        validMove = true;
+                    }
+                }
+                if (!validMove)
+                {
+                    return false;
+                }
+                for (int i = currentRow, j = CurrentColomn + 1; j < targetColomn; j++)
+                {
+                    switch (currentPosition2D[i][j])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        return false;
+                    }
+                }
+            }
+
+        }
+        else if (currentPosition2D[currentRow][CurrentColomn] == 'q')
+        {
+            if (targetColomn - CurrentColomn == targetRow - currentRow)
+            {
+                if (targetColomn > CurrentColomn && targetRow > currentRow)
+                {
+                    for (int i = currentRow + 1, j = CurrentColomn + 1; i <= targetRow && j < targetColomn; i++, j++)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+                        case 'p':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'r':
+                        case 'R':
+                        case 'N':
+                        case 'B':
+                        case 'Q':
+                        case 'K':
+                        case 'P':
+                            return false;
+                            break;
+                        }
+                    }
+                    for (int i = currentRow, j = CurrentColomn; i <= targetRow && j <= targetColomn; i++, j++)
+                    {
+                        if (j == targetColomn && i == targetRow)
+                        {
+                            validMove = true;
+                        }
+
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                }
+                else if (targetRow > currentRow && targetColomn < CurrentColomn)
+                {
+                    for (int i = currentRow + 1, j = CurrentColomn - 1; i <= targetRow && j >= targetColomn; i++, j--)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+
+                        case 'p':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'r':
+                        case 'R':
+                        case 'N':
+                        case 'B':
+                        case 'Q':
+                        case 'K':
+                        case 'P':
+                            // cout << currentRow << CurrentColomn;
+                            return false;
+                            break;
+
+                        }
+                    }
+                    for (int i = currentRow, j = CurrentColomn; i <= targetRow && j >= targetColomn; i++, j--)
+                    {
+                        //cout << "yes";
+                        if (j == targetColomn && i == targetRow)
+                        {
+                            validMove = true;
+                        }
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                }
+                else if (targetRow < currentRow && targetColomn < CurrentColomn)
+                {
+                    for (int i = currentRow - 1, j = CurrentColomn - 1; i >= targetRow && j >= targetColomn; i--, j--)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+                        case 'p':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'r':
+                        case 'R':
+                        case 'N':
+                        case 'B':
+                        case 'Q':
+                        case 'K':
+                        case 'P':
+                            return false;
+                        }
+                    }
+                    for (int i = currentRow, j = CurrentColomn; i >= targetRow && j >= targetColomn; i--, j--)
+                    {
+                        if (j == targetColomn && i == targetRow)
+                        {
+                            validMove = true;
+                        }
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                }
+                else if (targetRow < currentRow && targetColomn > CurrentColomn)
+                {
+                    for (int i = currentRow - 1, j = CurrentColomn + 1; i >= targetRow && j <= targetColomn; i--, j++)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+                        case 'p':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'r':
+                        case 'R':
+                        case 'N':
+                        case 'B':
+                        case 'Q':
+                        case 'K':
+                        case 'P':
+                            return false;
+                        }
+                    }
+                    for (int i = currentRow, j = CurrentColomn; i >= targetRow && j <= targetColomn; i--, j++)
+                    {
+                        if (i == targetRow && j == targetColomn)
+                        {
+                            validMove = true;
+                        }
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            else if (targetRow == currentRow || CurrentColomn == targetColomn)
+            {
+                if (currentRow < targetRow)
+                {
+                    if (CurrentColomn != targetColomn)
+                    {
+                        return false;
+                    }
+                    for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
+                    {
+                        switch (currentPosition2D[j][i])
+                        {
+                        case 'p':
+                        case 'r':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'P':
+                        case 'R':
+                        case 'B':
+                        case 'N':
+                        case 'Q':
+                        case 'K':
+                            return false;
+                        }
+                    }
+                }
+                else if (targetRow < currentRow)
+                {
+                    if (CurrentColomn != targetColomn)
+                    {
+                        return false;
+                    }
+
+                    for (int i = CurrentColomn, j = currentRow - 1; j > targetRow; j--)
+                    {
+                        cout << "yes";
+                        switch (currentPosition2D[j][i])
+                        {
+                        case 'p':
+                        case 'r':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'P':
+                        case 'R':
+                        case 'B':
+                        case 'N':
+                        case 'Q':
+                        case 'K':
+                            return false;
+                        }
+                    }
+                }
+                else if (currentRow == targetRow && targetColomn < CurrentColomn)
+                {
+                    if (currentRow != targetRow)
+                    {
+                        return false;
+                    }
+                    for (int i = currentRow, j = CurrentColomn - 1; j >= targetColomn; j--)
+                    {
+                        if (j == targetColomn)
+                        {
+                            validMove = true;
+                        }
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                    for (int i = currentRow, j = CurrentColomn - 1; j > targetColomn; j--)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+                        case 'p':
+                        case 'r':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'P':
+                        case 'R':
+                        case 'B':
+                        case 'N':
+                        case 'Q':
+                        case 'K':
+                            //cout << CurrentColomn;
+                            return false;
+                        }
+                    }
+                }
+                else if (currentRow == targetRow && CurrentColomn < targetColomn)
+                {
+                    if (currentRow != targetRow)
+                    {
+                        return false;
+                    }
+                    for (int i = CurrentColomn, j = currentRow; j <= targetColomn; i, j++)
+                    {
+                        if (j == targetColomn)
+                        {
+                            validMove = true;
+                        }
+                    }
+                    if (!validMove)
+                    {
+                        return false;
+                    }
+                    for (int i = currentRow, j = CurrentColomn + 1; j < targetColomn; j++)
+                    {
+                        switch (currentPosition2D[i][j])
+                        {
+                        case 'p':
+                        case 'r':
+                        case 'b':
+                        case 'n':
+                        case 'q':
+                        case 'k':
+                        case 'P':
+                        case 'R':
+                        case 'B':
+                        case 'N':
+                        case 'Q':
+                        case 'K':
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        else if (currentPosition2D[currentRow][CurrentColomn] == 'p')
+        {
+            //cout << "yes";
+            if (currentRow == 1)
+            {
+                if (CurrentColomn == targetColomn)
+                {
+                    switch (currentPosition2D[currentRow + 1][CurrentColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        return false;
+                    }
+                    if (currentRow + 1 == targetRow || (currentRow + 2) == targetRow)
+                    {
+                        return true;
+                    }
+                }
+                else if (currentRow + 1 == targetRow && CurrentColomn - 1 == targetColomn)
+                {
+                    switch (currentPosition2D[targetRow][targetColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case '.':
+                        return false;
+                    }
+                }
+                else if (currentRow + 1 == targetRow && CurrentColomn + 1 == targetColomn)
+                {
+                    switch (currentPosition2D[targetRow][targetColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case '.':
+                        return false;
+                    }
+                }
+            }
+            else if (currentRow < 1)
+            {
+                return false;
+            }
+            else
+            {
+                if (CurrentColomn == targetColomn)
+                {
+                    switch (currentPosition2D[currentRow + 1][CurrentColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case 'P':
+                    case 'R':
+                    case 'B':
+                    case 'N':
+                    case 'Q':
+                    case 'K':
+                        return false;
+                    }
+                    if (currentRow + 1 != targetRow)
+                    {
+                        return false;
+                    }
+                }
+                else if (currentRow + 1 == targetRow && CurrentColomn - 1 == targetColomn)
+                {
+                    switch (currentPosition2D[targetRow][targetColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                    case '.':
+                        return false;
+                    }
+                }
+                else if (currentRow + 1 == targetRow && CurrentColomn + 1 == targetColomn)
+                {
+                    switch (currentPosition2D[targetRow][targetColomn])
+                    {
+                    case 'p':
+                    case 'r':
+                    case 'b':
+                    case 'n':
+                    case 'q':
+                    case 'k':
+                        return false;
+                    }
+                }
+            }
+        }
+    //White pieces part validation
+         
+    if (currentPosition2D[currentRow][CurrentColomn] == 'B')
     {
         if (targetColomn > CurrentColomn && targetRow > currentRow)
         {
-            for (int i = currentRow+1, j = CurrentColomn+1; i <=targetRow  && j< targetColomn; i++, j++)
+            for (int i = currentRow + 1, j = CurrentColomn + 1; i <= targetRow && j < targetColomn; i++, j++)
             {
                 switch (currentPosition2D[i][j])
                 {
@@ -191,7 +973,7 @@ bool validateMove(string FEN,string move)
                 {
                     validMove = true;
                 }
-               
+
             }
             if (!validMove)
             {
@@ -200,32 +982,32 @@ bool validateMove(string FEN,string move)
         }
         else if (targetRow > currentRow && targetColomn < CurrentColomn)
         {
-            for (int i = currentRow+1, j = CurrentColomn-1; i<=targetRow && j>=targetColomn; i++, j--)
+            for (int i = currentRow + 1, j = CurrentColomn - 1; i <= targetRow && j >= targetColomn; i++, j--)
             {
                 switch (currentPosition2D[i][j])
                 {
-                    
-                    case 'p':
-                    case 'b':
-                    case 'n':
-                    case 'q':
-                    case 'k':
-                    case 'r':
-                    case 'R':
-                    case 'N':
-                    case 'B':
-                    case 'Q':
-                    case 'K':
-                    case 'P':
-                       // cout << currentRow << CurrentColomn;
-                        return false;
-                        break;
-                    
+
+                case 'p':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'r':
+                case 'R':
+                case 'N':
+                case 'B':
+                case 'Q':
+                case 'K':
+                case 'P':
+                    // cout << currentRow << CurrentColomn;
+                    return false;
+                    break;
+
                 }
             }
-            for (int i = currentRow, j = CurrentColomn; i<=targetRow && j>=targetColomn; i++, j--)
+            for (int i = currentRow, j = CurrentColomn; i <= targetRow && j >= targetColomn; i++, j--)
             {
-        //cout << "yes";
+                //cout << "yes";
                 if (j == targetColomn && i == targetRow)
                 {
                     validMove = true;
@@ -238,7 +1020,7 @@ bool validateMove(string FEN,string move)
         }
         else if (targetRow < currentRow && targetColomn < CurrentColomn)
         {
-            for (int i = currentRow-1, j = CurrentColomn-1; i >= targetRow&& j >= targetColomn; i--, j--)
+            for (int i = currentRow - 1, j = CurrentColomn - 1; i >= targetRow && j >= targetColomn; i--, j--)
             {
                 switch (currentPosition2D[i][j])
                 {
@@ -269,9 +1051,9 @@ bool validateMove(string FEN,string move)
                 return false;
             }
         }
-        else if (targetRow < currentRow&& targetColomn > CurrentColomn)
+        else if (targetRow < currentRow && targetColomn > CurrentColomn)
         {
-            for (int i = currentRow-1, j = CurrentColomn+1; i >= targetRow && j <= targetColomn; i--, j++)
+            for (int i = currentRow - 1, j = CurrentColomn + 1; i >= targetRow && j <= targetColomn; i--, j++)
             {
                 switch (currentPosition2D[i][j])
                 {
@@ -303,7 +1085,7 @@ bool validateMove(string FEN,string move)
             }
         }
     }
-    else if (currentPosition2D[currentRow][CurrentColomn] == 'n')
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'N')
     {
         if (targetColomn > CurrentColomn && targetRow > currentRow)
         {
@@ -315,10 +1097,10 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-            else if ((currentRow + 1) == targetRow && (CurrentColomn+2)==targetColomn)
+            else if ((currentRow + 1) == targetRow && (CurrentColomn + 2) == targetColomn)
             {
                 return true;
-            } 
+            }
             else if ((currentRow + 2 == targetRow) && (CurrentColomn + 1) == targetColomn)
             {
                 return true;
@@ -327,14 +1109,14 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-       }
+        }
         else if (targetColomn > CurrentColomn && targetRow < currentRow)
         {
-            if ((currentRow - 1) < 0 || (CurrentColomn + 2) >= 8)
+            if ((currentRow - 1) < 0 || (CurrentColomn + 2) > 8)
             {
                 return false;
             }
-            else if ((CurrentColomn + 1) >= 8 || (currentRow - 2) < 0)
+            else if ((CurrentColomn + 1) > 8 || (currentRow - 2) < 0)
             {
                 return false;
             }
@@ -354,7 +1136,7 @@ bool validateMove(string FEN,string move)
         }
         else if (targetRow < currentRow && targetColomn < CurrentColomn)
         {
-            if ((CurrentColomn - 1)<0 || (currentRow - 2) < 0)
+            if ((CurrentColomn - 1) < 0 || (currentRow - 2) < 0)
             {
                 return false;
             }
@@ -381,7 +1163,7 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-            if ((currentRow +2) >= 8 && (CurrentColomn -1 ) <= 0)
+            if ((currentRow + 2) >= 8 && (CurrentColomn - 1) <= 0)
             {
                 return false;
             }
@@ -399,14 +1181,14 @@ bool validateMove(string FEN,string move)
             }
         }
     }
-    else if (currentPosition2D[currentRow][CurrentColomn] == 'r')
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'R')
     {
         if (currentRow < targetRow)
         {
             if (CurrentColomn != targetColomn)
             {
                 return false;
-           }
+            }
             for (int i = CurrentColomn, j = currentRow + 1; j < targetRow; j++)
             {
                 switch (currentPosition2D[j][i])
@@ -433,10 +1215,10 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-           
+
             for (int i = CurrentColomn, j = currentRow - 1; j > targetRow; j--)
             {
-            cout << "yes";
+              /*  cout << "yes";*/
                 switch (currentPosition2D[j][i])
                 {
                 case 'p':
@@ -472,7 +1254,7 @@ bool validateMove(string FEN,string move)
             {
                 return false;
             }
-            for (int i = currentRow, j = CurrentColomn-1; j > targetColomn; j--)
+            for (int i = currentRow, j = CurrentColomn - 1; j > targetColomn; j--)
             {
                 switch (currentPosition2D[i][j])
                 {
@@ -488,7 +1270,7 @@ bool validateMove(string FEN,string move)
                 case 'N':
                 case 'Q':
                 case 'K':
-                //cout << CurrentColomn;
+                    //cout << CurrentColomn;
                     return false;
                 }
             }
@@ -532,7 +1314,7 @@ bool validateMove(string FEN,string move)
         }
 
     }
-    else if (currentPosition2D[currentRow][CurrentColomn] == 'q')
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'Q')
     {
         if (targetColomn - CurrentColomn == targetRow - currentRow)
         {
@@ -808,6 +1590,121 @@ bool validateMove(string FEN,string move)
                     }
                 }
             }
+        }
+    }
+    else if (currentPosition2D[currentRow][CurrentColomn] == 'P')
+    {
+        //cout << "yes";
+        if (currentRow == 6)
+        {
+            if (CurrentColomn == targetColomn)
+            {
+                switch (currentPosition2D[currentRow - 1][CurrentColomn])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+                if (currentRow - 1 == targetRow || (currentRow - 2) == targetRow)
+                {
+                    return true;
+                }
             }
+            else if (currentRow - 1 == targetRow && CurrentColomn - 1 == targetColomn)
+            {
+                switch (currentPosition2D[targetRow][targetColomn])
+                {
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                case '.':
+                    return false;
+                }
+            }
+            else if (currentRow - 1 == targetRow && CurrentColomn + 1 == targetColomn)
+            {
+                switch (currentPosition2D[targetRow][targetColomn])
+                {
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                case '.':
+                    return false;
+                }
+            }
+        }
+        else if (currentRow >6)
+        {
+            return false;
+        }
+        else
+        {
+            if (CurrentColomn == targetColomn)
+            {
+                switch (currentPosition2D[currentRow - 1][CurrentColomn])
+                {
+                case 'p':
+                case 'r':
+                case 'b':
+                case 'n':
+                case 'q':
+                case 'k':
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+                if (currentRow - 1 != targetRow)
+                {
+                    return false;
+                }
+            }
+            else if (currentRow - 1 == targetRow && CurrentColomn - 1 == targetColomn)
+            {
+                switch (currentPosition2D[targetRow][targetColomn])
+                {
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                case '.':
+                    return false;
+                }
+            }
+            else if (currentRow - 1 == targetRow && CurrentColomn + 1 == targetColomn)
+            {
+                switch (currentPosition2D[targetRow][targetColomn])
+                {
+                case 'P':
+                case 'R':
+                case 'B':
+                case 'N':
+                case 'Q':
+                case 'K':
+                    return false;
+                }
+            }
+        }
     }
 }

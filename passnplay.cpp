@@ -61,7 +61,12 @@ void passnplay()
         cout << "+---------------+" << endl;
         cout << "Enter move: ";
         getline(cin, move);
-        if (move == "resign"&&moveColor==true)
+        if (!validateMove(generateFEN(board, K_whiteCastle, Q_whiteCastle, k_blackCastle, q_blackCastle, moveColor, moveCounter), move))
+        {
+            cout << "Illegal move"<<endl;
+            goto start;
+        }
+        else if (move == "resign"&&moveColor==true)
         {
             cout << "Black won by resignation."<<endl;
             return;
@@ -265,8 +270,7 @@ void passnplay()
             targetColomn = 7;
             break;
         }
-       
-        if(board[currentRow][CurrentColomn]=='.')
+         if(board[currentRow][CurrentColomn]=='.')
         {
             cout << "Invalid move, no piece on current square to move."<<endl;
         }

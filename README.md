@@ -28,6 +28,6 @@ the FEN. Want to give up simply type <b>(resign)</b>.Brain is not braining of bo
 simply type<b> (draw)</b> and pray if opponent accepts.But remeber you must have played over fifteen moves and if opponent declines, then you are not going to offer any, till next fifteen moves.
 Kinda crazy but my work my rules!!!!
 <br><b>Future plans:</b>
-Will add move validation so that no one can do whatever he/she want.Currently bishop move function is totally done just and next target is going to be a knight.<br>
+Will add move validation so that no one can do whatever he/she want.Currently all move functions are totally done just mighty king is waiting to follow my rules.<br>
 Will add current position analysis on the bases of piece placement.<br>
 It will play one day and this day is not too far, maybe intelligent play should take time.
